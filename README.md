@@ -83,4 +83,9 @@ The machine had the following specs:
 | 1_000_000_000 | 0.9 |         x        |
 
 # License
-GPL-3.0
+
+<sup>
+The entire code within this repository is licensed under the <a href="LICENSE">GPLv3</a>.
+Please <a href="https://www.parity.io/contact/">contact us</a> if you have questions about the licensing of our
+ products.
+</sup>
