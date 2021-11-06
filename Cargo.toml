@@ -1,8 +1,10 @@
+cargo-features = ["edition2021"]
+
 [package]
 name = "substrate-chaoscope"
 version = "0.1.0"
 authors = ["Parity Technologies <admin@parity.io>"]
-edition = "2018"
+edition = "2021"
 license = "AGPL-3.0"
 readme = "README.md"
 repository = "https://github.com/paritytech/chaoscope"
@@ -11,8 +13,5 @@ description = "RPC Instrumentation toolkit for pallet-chaos"
 keywords = ["parity", "substrate", "blockchain", "chaos"]
 include = ["Cargo.toml", "src/**/*.rs", "README.md", "LICENSE"]
 
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
-
 [dependencies]
-substrate-subxt = "0.15.0"
+subxt = { git = "https://github.com/paritytech/subxt.git", branch = "master" }
