@@ -55,10 +55,14 @@ The machine had the following specs:
 
 For each extrinsic provided by `pallet-chaos`, a table is displayed with the relevant data.
 
-## dragBlockUnitWeight
+## dragBlockUnitWeight(n)
 
 Drags block production by calculating hashes in a loop (`n` times), with constant unitary extrinsic weight.
 
+- `W = k + A * n`
+- `drag_block_W = 1`
+
+|                
 |       n       | added block time |
 |:-------------:|:----------------:|
 |   1_000_000   |         x        |
@@ -69,7 +73,10 @@ Drags block production by calculating hashes in a loop (`n` times), with constan
 |  500_000_000  |         x        |
 | 1_000_000_000 |         x        |
 
-## dragBlockDampWeight
+## dragBlockDampWeight(wd, n)
+
+- `W = k + A * n`
+- `drag_block_W = k + wd * A * n`
 
 Drags block production by calculating hashes in a loop (`n` times), with linear damping on weight (`0.0 < wd < 1.0`).
 
