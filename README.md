@@ -8,6 +8,7 @@ Built with [subxt](https://github.com/paritytech/subxt).
 
 In the Ethereum world, Smart Contracts are audited for their correctness and security. The audit process starts from the determinism of the EVM, and a detailed analysis of most (ideally all) possible logical scenarios that the contract bytecode can generate is carried out with the goal of asserting that:
 - The Smart Contract does what it claims to do (correctness).
+- The Smart Contract does not do what it never claimed to do (transparency).
 - The Smart Contract cannot be exploited via attack vectors (security).
 
 The majority of Ethereum Smart Contracts are written as Solidity/Vyper source code. Like any programming language, reusable logic is an emerging phenomenon. This gives rise to the OpenZeppeling business model, where pre-audited reusable Solidity code is provided as Open Source Software, accelerating development and increasing security across the whole Ethereum Ecosystem.
