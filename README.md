@@ -28,7 +28,7 @@ In the Substrate Ecosystem, Audit stakeholders can be listed as follows:
 
 ## Economic Vectors 
 
-Substrate Runtimes can be seen as Distributed Virtual Machines (DVM), even when they’re not necessarily executing Smart Contracts. The difference is that Smart Contract-free Runtimes represent DVMs with static logic, and not really programmable via Smart Contracts bytecode. Such DVMs can however go through Runtime Upgrades, essentially delivering patches and referenda onto the chain. 
+Substrate Runtimes can be seen as Distributed Virtual Machines (DVM), even when they’re not necessarily executing Smart Contracts. The difference is that Smart Contract-free Runtimes represent DVMs with static logic, and not really programmable via Smart Contracts bytecode. Such DVMs can however go through Runtime Upgrades, essentially upgrading DVM OpCodes. 
 
 Whenever the DVM needs to execute its State Transition Functions, there’s a specific cost attributed to the virtual computational resources allocated for such transformation. Such cost is covered in the form of fees charged to the user, so that the system can function in a sustainable manner.
 
