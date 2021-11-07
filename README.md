@@ -32,7 +32,7 @@ Substrate Runtimes can be seen as Distributed Virtual Machines (DVM), even when 
 
 Whenever the DVM needs to execute its State Transition Functions, there’s a specific cost attributed to the virtual computational resources allocated for such transformation. Such cost is covered in the form of fees charged to the user, so that the system can function in a sustainable manner.
 
-The relationship between fees and computational resources allocated from the DVM is critical to the safety of the system. Poorly designed fees leave room for wide Denial of Service (DoS) attack surfaces. An attacker can flood the system with resource-expensive but economically-cheap operations, effectively denying service from a significant number of users, while only spending a small amount of tokens.
+The relationship between fees and computational resources allocated from the DVM is critical to the economical safety of the system. Poorly designed fees leave room for wide Denial of Service (DoS) attack surfaces. An attacker can flood the system with resource-expensive but economically-cheap operations, effectively denying service from a significant number of users, while only spending a small amount of tokens.
 
 While Ethereum introduced the concept of Gas as a correlation between EVM resource consumption and economical fees, Substrate uses Weights so that Runtime Engineers can attribute appropriate fees for each extrinsic operation of their pallets. Properly engineered transaction fees are a fundamental property of a attack-resistant pallet.
 
