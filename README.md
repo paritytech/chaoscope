@@ -48,7 +48,7 @@ While Ethereum introduced the concept of Gas as a correlation between EVM resour
 ```sh
 $ git clone https://github.com/paritytech/chaoscope.git
 $ cd chaoscope
-$ ./test_setup.sh
+$ ./chaoscope.sh
 ```
 
 2. Interact with the extrinsics via the CLI.
