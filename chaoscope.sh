@@ -46,7 +46,7 @@ if [ ! -z "$RUN_NODE" ]; then
     popd
   fi
 
-  if [ ! -d "substrate-node-chaos/target/release" ]; then
+  if [ ! -d "substrate-node-chaos/target/release/node-template" ]; then
     echo ""
     echo "Let's build the node-template executable..."
     pushd substrate-node-chaos
