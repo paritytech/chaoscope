@@ -75,7 +75,6 @@ Drags block production by calculating hashes in a loop (`n` times), with constan
 - `W = k + A * n`
 - `drag_block_W = 1`
 
-|                
 |       n       | added block time |
 |:-------------:|:----------------:|
 |   1_000_000   |         x        |
