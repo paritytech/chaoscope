@@ -26,9 +26,9 @@ In the Substrate Ecosystem, Audit stakeholders can be listed as follows:
 
 # Runtime Attack Surfaces
 
-## Economic Vectors 
+## Economic Vectors
 
-Substrate Runtimes can be seen as Distributed Virtual Machines (DVM), even when they’re not necessarily executing Smart Contracts. The difference is that Smart Contract-free Runtimes represent DVMs with static logic, and not really programmable via Smart Contracts bytecode. Such DVMs can however go through Runtime Upgrades, essentially upgrading DVM OpCodes. 
+Substrate Runtimes can be seen as Distributed Virtual Machines (DVM), even when they’re not necessarily executing Smart Contracts. The difference is that Smart Contract-free Runtimes represent DVMs with static logic, and not really programmable via Smart Contracts bytecode. Such DVMs can however go through Runtime Upgrades, essentially upgrading DVM OpCodes.
 
 Whenever the DVM needs to execute its State Transition Functions, there’s a specific cost attributed to the virtual computational resources allocated for such transformation. Such cost is covered in the form of fees charged to the user, so that the system can function in a sustainable manner.
 
@@ -39,6 +39,15 @@ While Ethereum introduced the concept of Gas as a correlation between EVM resour
 ## Protocol Vectors
 
 // ToDo: describe protocol attack vectors.
+
+# Instructions
+
+1. Set up a local test environment:
+```sh
+$ bash < <(curl -s https://raw.githubusercontent.com/paritytech/chaoscope/main/test_setup.sh?token=ACJ7XNFYAPPRJISVSDPU43TBSGIPE)
+```
+
+2. Nnavigate to http://localhost:xxx to interact with the extrinsics.
 
 # Runtime Instrumentation
 
