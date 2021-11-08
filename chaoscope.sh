@@ -23,37 +23,37 @@ echo "START_NODE=1               -> Spin a substrate-node-chaos node (as screen 
 echo "RUN_CHAOSCOPE=1            -> Run chaoscope cli"
 echo "BUILD_CHAOSCOPE_WASM=1     -> Build chaoscope.wasm"
 echo ""
-echo "ex.: START_NODE=1 RUN_CHAOSCOPE=1 ./test_setup.sh"
+echo "ex.: START_NODE=1 RUN_CHAOSCOPE=1 ./chaoscope.sh"
 echo ""
 
-if [ ! -d "substrate-node-chaos" ]; then
-  echo ""
-  echo "Let's clone substrate-node-template..."
-
-  git clone https://github.com/substrate-developer-hub/substrate-node-template -b v${SUBSTRATE_V}+${SUBSTRATE_TIMESTAMP} substrate-node-chaos
-  pushd substrate-node-chaos
-
-  echo ""
-  echo "Let's clone pallet-chaos..."
-  pushd pallets
-  git clone ssh://git@github.com/paritytech/pallet-chaos.git
-  popd
-
-  echo ""
-  echo "Let's add pallet-chaos to the runtime..."
-  git apply pallets/pallet-chaos/diff/add_chaos_runtime.diff
-  popd
-fi
-
-if [ ! -d "substrate-node-chaos/target/release" ]; then
-  echo ""
-  echo "Let's build the node-template executable..."
-  pushd substrate-node-chaos
-  cargo build --release
-  popd
-fi
-
 if [ ! -z "$START_NODE" ]; then
+  if [ ! -d "substrate-node-chaos" ]; then
+    echo ""
+    echo "Let's clone substrate-node-template..."
+
+    git clone https://github.com/substrate-developer-hub/substrate-node-template -b v${SUBSTRATE_V}+${SUBSTRATE_TIMESTAMP} substrate-node-chaos
+    pushd substrate-node-chaos
+
+    echo ""
+    echo "Let's clone pallet-chaos..."
+    pushd pallets
+    git clone ssh://git@github.com/paritytech/pallet-chaos.git
+    popd
+
+    echo ""
+    echo "Let's add pallet-chaos to the runtime..."
+    git apply pallets/pallet-chaos/diff/add_chaos_runtime.diff
+    popd
+  fi
+
+  if [ ! -d "substrate-node-chaos/target/release" ]; then
+    echo ""
+    echo "Let's build the node-template executable..."
+    pushd substrate-node-chaos
+    cargo build --release
+    popd
+  fi
+
   echo ""
   echo "Let's start the substrate-node-chaos executable..."
   pushd substrate-node-chaos
