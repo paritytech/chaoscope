@@ -2,7 +2,7 @@
 
 RPC Instrumentation toolkit for [pallet-chaos](https://github.com/paritytech/pallet-chaos).
 
-Built with [subxt](https://github.com/paritytech/subxt).
+Built with [subxt](https://github.com/paritytech/subxt) for *Substrate Offensive Security*.
 
 # Introduction
 
@@ -15,7 +15,7 @@ The majority of Ethereum Smart Contracts are written as Solidity/Vyper source co
 
 In terms of Substrate, a similar analysis can be done, although in two separate categories:
 - **Runtime Pallets**: the State Transition Function (STF) of each Runtime consists of a set of deterministic input/output logical operations, commonly modularized into pallets. The audit process of a pallet consists of a detailed analysis of the correctness and security of most (ideally all) possible logical scenarios that a Runtime can be subjected to when using such a pallet.
-- **Smart Contracts**: also consist of a set of deterministic input/output logic, but instead of having it reside as Runtime extrinsics, such logic is encoded as bytecode under some custom Virtual Machine specification (usually Turing Complete). The audit process of a Substrate Smart Contract starts at the VM specification and checks for the correctness and security of most (if not all) possible logical scenarios that the Smart Contract bytecode can be subjected to. Note: Substrate Smart Contracts are not covered in the context of this report.
+- **Smart Contracts**: also consist of a set of deterministic input/output logic, but instead of having it reside as Runtime extrinsics, such logic is encoded as bytecode under some custom Virtual Machine specification (usually Turing Complete). The audit process of a Substrate Smart Contract starts at the VM specification and checks for the correctness and security of most (if not all) possible logical scenarios that the Smart Contract bytecode can be subjected to. Note: Substrate Smart Contracts are not yet covered by chaoscope.
 
 In the Substrate Ecosystem, Audit stakeholders can be listed as follows:
 - **Auditing Firm**: a third party service provider. Ideally, they have a solid grasp on the audited technologies and a know-how on offensive security best practices. Ex.: CertiK, SRLabs.
@@ -23,6 +23,8 @@ In the Substrate Ecosystem, Audit stakeholders can be listed as follows:
 - **Substrate Ecosystem**: any teams that benefit from the Open Source Software written by the Audited Team. Ex.: some SBP team using a pre-audited pallet.
 - **Ecosystem Curator**: teams working for the quality, success and security of the Ecosystem. Ex.: Parity, W3F.
 - **User Base**: most users don’t have the time to verify 100% of the technology they’re using, so audited technologies provide trust to the user base. Ex.: Acala DeFi traders.
+
+Chaoscope is a toolkit for Offensive Security analysis of Substrate Runtimes. It aims to benefit all Audit stakeholders in the Substrate Ecosystem.
 
 # Runtime Attack Surfaces
 
