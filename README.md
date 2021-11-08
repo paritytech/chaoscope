@@ -46,10 +46,12 @@ While Ethereum introduced the concept of Gas as a correlation between EVM resour
 
 1. Set up a local test environment:
 ```sh
-$ bash < <(curl -s https://raw.githubusercontent.com/paritytech/chaoscope/main/test_setup.sh?token=ACJ7XNFYAPPRJISVSDPU43TBSGIPE)
+$ git clone https://github.com/paritytech/chaoscope.git
+$ cd chaoscope
+$ ./test_setup.sh
 ```
 
-2. Nnavigate to http://localhost:xxx to interact with the extrinsics.
+2. Interact with the extrinsics via the CLI.
 
 # Runtime Instrumentation
 
