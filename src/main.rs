@@ -18,6 +18,8 @@ extern crate shrust;
 use shrust::{Shell, ShellIO};
 use std::io::prelude::*;
 
+use chaoscope;
+
 #[tokio::main]
 async fn main() {
     pretty_env_logger::init();
@@ -40,12 +42,16 @@ async fn main() {
     let mut shell = Shell::new(());
 
     shell.new_command_noargs("drag_block_unit_weight", "Drags block production on the runtime by calculating hashes in a loop (n times). Uses constant unitary extrinsic weight.", |io, _| {
-        writeln!(io, "Hello World !!!")?;
+        // writeln!(io, "Hello World !!!")?;
+        let result = chaoscope::rpc_drag_block_unit_weight(10_000_000);
+        // ...
+
+        writeln!(io, "Hello drag_block_unit_weight !!!")?;
         Ok(())
     });
 
     shell.new_command_noargs("drag_block_damp_weight", "Drags block production on the runtime by calculating hashes in a loop (n times). Uses linear damping on weight (`0.0 < wd < 1.0`).", |io, _| {
-        writeln!(io, "Hello World !!!")?;
+        writeln!(io, "Hello drag_block_damp_weight !!!")?;
         Ok(())
     });
 

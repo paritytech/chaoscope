@@ -461,6 +461,20 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "12bd83544cd11113170ce1eee45383928f3f720bc8b305af18c2a3da3547e1ae"
 
 [[package]]
+name = "chaoscope"
+version = "0.1.0"
+dependencies = [
+ "async-std",
+ "env_logger 0.8.4",
+ "parity-scale-codec",
+ "pretty_env_logger",
+ "shrust",
+ "subxt",
+ "tokio",
+ "warp",
+]
+
+[[package]]
 name = "chrono"
 version = "0.4.19"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -2973,20 +2987,6 @@ dependencies = [
  "schnorrkel",
  "sha2 0.9.8",
  "zeroize",
-]
-
-[[package]]
-name = "substrate-chaoscope"
-version = "0.1.0"
-dependencies = [
- "async-std",
- "env_logger 0.8.4",
- "parity-scale-codec",
- "pretty_env_logger",
- "shrust",
- "subxt",
- "tokio",
- "warp",
 ]
 
 [[package]]
