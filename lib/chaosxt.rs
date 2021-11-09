@@ -14,6 +14,8 @@
 // You should have received a copy of the Affero GNU General Public License
 // along with chaoscope.  If not, see <http://www.gnu.org/licenses/>.
 
+// eXTrinstic calls from github.com/paritytech/pallet-chaos.git
+
 #[allow(dead_code, unused_imports, non_camel_case_types)]
 pub mod api {
     #[derive(:: subxt :: codec :: Encode, :: subxt :: codec :: Decode)]
