@@ -16,7 +16,7 @@
 
 use subxt::ClientBuilder;
 
-#[subxt::subxt(runtime_metadata_path = "examples/substrate-node-chaos.scale")]
+#[subxt::subxt(runtime_metadata_path = "metadata/substrate-node-chaos.scale")]
 pub mod block_dragger {}
 
 #[async_std::main]
