@@ -119,7 +119,7 @@ Drags block production by calculating hashes in a loop (`n` times), with linear 
 # License
 
 <sup>
-The entire code within this repository is licensed under the <a href="LICENSE">GPLv3</a>.
+The entire code within this repository is licensed under the <a href="LICENSE">AGPLv3</a>.
 Please <a href="https://www.parity.io/contact/">contact us</a> if you have questions about the licensing of our
  products.
 </sup>
