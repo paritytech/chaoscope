@@ -29,8 +29,9 @@ async fn main() {
     println!("         ⇐●⇒");
     println!("         ⇙⇓⇘");
     println!("          ‾");
-    println!("⚠️Expect... Chaoscope! ⚠");
-    println!("Open http://localhost:3030 on your browser.");
+    println!("⚠️Expect... Chaoshell! ⚠");
+    println!("Type \"help\" to learn how to interact with Chaoshell");
+    println!("Open http://localhost:3030 on your browser to visualize the output.");
 
     // stdout via browser
     tokio::spawn(async move {
