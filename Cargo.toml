@@ -16,6 +16,9 @@ include = ["Cargo.toml", "src/**/*.rs", "README.md", "LICENSE"]
 [dependencies]
 subxt = { git = "https://github.com/paritytech/subxt.git", branch = "master" }
 codec = { package = "parity-scale-codec", version = "2", default-features = false, features = ["derive", "full", "bit-vec"] }
+tokio = { version = "1", features = ["full"] }
+warp = "0.3"
+pretty_env_logger = "0.4"
 
 [dev-dependencies]
 async-std = { version = "1.9.0", features = ["attributes", "tokio1"] }
