@@ -56,6 +56,7 @@ if [ ! -z "$RUN_NODE" ]; then
 
   echo ""
   echo "Let's start the substrate-node-chaos executable..."
+  sudo killall node-template
   pushd substrate-node-chaos
   screen -d -m ./target/release/node-template --dev --tmp
 
