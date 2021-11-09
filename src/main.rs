@@ -42,7 +42,7 @@ async fn main() {
 
     let mut shell = Shell::new(());
 
-    shell.new_command_noargs("drag_block_unit_weight", "Drags block production on the runtime by calculating hashes in a loop (n times). Uses constant unitary extrinsic weight.", |io, _| {
+    shell.new_command_noargs("drag_block_unit_weight", "Drags block production by calculating hashes in a loop (n times). Uses constant unitary extrinsic weight.", |io, _| {
         // writeln!(io, "Hello World !!!")?;
         let result = chaoscope::rpc_drag_block_unit_weight(10_000_000);
         // ...
@@ -51,7 +51,7 @@ async fn main() {
         Ok(())
     });
 
-    shell.new_command_noargs("drag_block_damp_weight", "Drags block production on the runtime by calculating hashes in a loop (n times). Uses linear damping on weight (`0.0 < wd < 1.0`).", |io, _| {
+    shell.new_command_noargs("drag_block_damp_weight", "Drags block production by calculating hashes in a loop (n times). Uses linear damping on weight (0.0 < wd < 1.0).", |io, _| {
         writeln!(io, "Hello drag_block_damp_weight !!!")?;
         Ok(())
     });
