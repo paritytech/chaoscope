@@ -15,6 +15,7 @@
 // along with chaoscope.  If not, see <http://www.gnu.org/licenses/>.
 
 extern crate shrust;
+use futures;
 use shrust::{Shell, ShellIO};
 use std::io::prelude::*;
 
@@ -44,10 +45,14 @@ async fn main() {
 
     shell.new_command_noargs("drag_block_unit_weight", "Drags block production by calculating hashes in a loop (n times). Uses constant unitary extrinsic weight.", |io, _| {
         // writeln!(io, "Hello World !!!")?;
-        let result = chaoscope::rpc_drag_block_unit_weight(10_000_000);
-        // ...
+        let rpc_future = chaoscope::rpc_drag_block_unit_weight(10_000_000);
 
-        writeln!(io, "Hello drag_block_unit_weight !!!")?;
+        let ret = match futures::executor::block_on(rpc_future) {
+            Ok(r) => r,
+            Err(e) => { println!("err: {}", e); 0 },
+        };
+
+        writeln!(io, "{}", ret)?;
         Ok(())
     });
 

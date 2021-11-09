@@ -22,16 +22,13 @@ use subxt::ClientBuilder;
 #[subxt::subxt(runtime_metadata_path = "metadata/substrate-node-chaos.scale")]
 pub mod chaosrpc {}
 
-pub async fn rpc_drag_block_unit_weight(n: u32) -> Result<(), Box<dyn std::error::Error>> {
-    env_logger::init();
-
+pub async fn rpc_drag_block_unit_weight(n: u32) -> Result<u32, Box<dyn std::error::Error>> {
     let api = ClientBuilder::new()
         .set_url("wss://localhost:9944")
         .build()
         .await?
         .to_runtime_api::<chaosrpc::RuntimeApi<chaosrpc::DefaultConfig>>();
 
-    println!("Hello drag_block_damp_weight !!!");
-
-    Ok(())
+    let ret = 1;
+    Ok(ret)
 }
