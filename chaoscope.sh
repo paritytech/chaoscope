@@ -19,7 +19,7 @@ echo " - [substrate-node-template](https://github.com/substrate-developer-hub/su
 echo " - [pallet-chaos](https://github.com/paritytech/pallet-chaos)"
 echo ""
 echo "Please, set your options as environment variables and call this script again."
-echo "RUN_NODE=1               -> Spin a substrate-node-chaos node (as screen session)"
+echo "RUN_NODE=1                 -> Spin a substrate-node-chaos node (as screen session)"
 echo "RUN_CHAOSCOPE=1            -> Run chaoscope cli"
 echo "BUILD_CHAOSCOPE_WASM=1     -> Build chaoscope.wasm"
 echo ""
