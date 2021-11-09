@@ -32,38 +32,44 @@ if [ ! -z "$RUN_NODE" ]; then
     echo "Let's clone substrate-node-template..."
 
     git clone https://github.com/substrate-developer-hub/substrate-node-template -b v${SUBSTRATE_V}+${SUBSTRATE_TIMESTAMP} substrate-node-chaos
-    pushd substrate-node-chaos
+    pushd substrate-node-chaos > /dev/null
 
     echo ""
     echo "Let's clone pallet-chaos..."
-    pushd pallets
+    pushd pallets > /dev/null
     git clone ssh://git@github.com/paritytech/pallet-chaos.git
-    popd
+    popd > /dev/null
 
     echo ""
     echo "Let's add pallet-chaos to the runtime..."
     git apply pallets/pallet-chaos/diff/add_chaos_runtime.diff
-    popd
+    popd > /dev/null
   fi
 
   if [ ! -d "substrate-node-chaos/target/release/node-template" ]; then
     echo ""
     echo "Let's build the node-template executable..."
-    pushd substrate-node-chaos
+    pushd substrate-node-chaos > /dev/null
     cargo build --release
-    popd
+    popd > /dev/null
   fi
 
   echo ""
   echo "Let's start the substrate-node-chaos executable..."
-  sudo killall node-template
-  pushd substrate-node-chaos
+
+  NODE_RUNNING=$(ps aux | grep node-template | wc -l)
+  if [ NODE_RUNNING != "1" ]; then
+    echo "First, we kill any node-template processes in the system... Please type in your sudo password:"
+    sudo killall node-template
+  fi
+
+  pushd substrate-node-chaos > /dev/null
   screen -d -m ./target/release/node-template --dev --tmp
 
   echo "Your substrate-node-chaos is running as a screen session in the background."
   echo "You can check it by running \"ps aux | grep node-template\""
   echo "You can kill it by running \"sudo killall node-template\"."
-  popd
+  popd > /dev/null
 fi
 
 if [ ! -z "$RUN_CHAOSCOPE" ]; then
