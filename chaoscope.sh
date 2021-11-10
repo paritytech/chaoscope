@@ -74,7 +74,7 @@ fi
 
 if [ ! -z "$RUN_CHAOSCOPE" ]; then
   echo ""
-  echo "Let's run the chaoscope cli..."
+  echo "Let's run the chaoscope shell..."
 
   cargo run --release
 fi
