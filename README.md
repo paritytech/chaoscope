@@ -53,13 +53,13 @@ $ ./chaoscope.sh
 
 2. Interact with the extrinsics via the CLI.
 
-# Chaoshell
+# Chaoscope Shell
 
-A [shrust](https://crates.io/crates/shrust) -based shell is provided by Chaoscope.
+A [shrust](https://crates.io/crates/shrust) based shell is provided by Chaoscope.
 
-Chaoshell is made available at whatever`tty` session initiated the executable.
+Chaoscope Shell is made available at whatever`tty` session initiated the executable.
 
-New shells are also open as TCP sockets at port `1234`, which means you can also connect to Chaoshell from other machines by doing:
+New shells are also open as TCP sockets at port `1234`, which means you can also connect to Chaoscope Shell from other machines by doing:
 ```sh
 $ nc x.y.w.z 1234
           _
@@ -67,8 +67,8 @@ $ nc x.y.w.z 1234
          ⇐●⇒
          ⇙⇓⇘
           ‾
-⚠️Expect... Chaoshell! ⚠
-Type "help" to learn how to interact with Chaoshell.
+⚠️Expect... Chaoscope Shell! ⚠
+Type "help" to learn how to interact with Chaoscope Shell.
 >
 ```
 

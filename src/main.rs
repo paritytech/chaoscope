@@ -29,10 +29,10 @@ async fn main() {
     println!("         ⇐●⇒");
     println!("         ⇙⇓⇘");
     println!("          ‾");
-    println!("⚠️Expect... Chaoshell! ⚠");
-    println!("A TCP socket is listening as Chaoshell at port 1234.");
+    println!("⚠️Expect... Chaoscope Shell! ⚠");
+    println!("A TCP socket is listening as Chaoscope Shell at port 1234.");
     println!("You can connect to it from another machine by typing \"nc x.y.w.z 1234\" on a new terminal.");
-    println!("Type \"help\" to learn how to interact with Chaoshell.");
+    println!("Type \"help\" to learn how to interact with Chaoscope Shell.");
 
     let mut shell = Shell::new(());
 
@@ -84,8 +84,12 @@ async fn main() {
         writeln!(io, "         ⇐●⇒").unwrap();
         writeln!(io, "         ⇙⇓⇘").unwrap();
         writeln!(io, "          ‾").unwrap();
-        writeln!(io, "⚠️Expect... Chaoshell! ⚠").unwrap();
-        writeln!(io, "Type \"help\" to learn how to interact with Chaoshell.").unwrap();
+        writeln!(io, "⚠️Expect... Chaoscope Shell! ⚠").unwrap();
+        writeln!(
+            io,
+            "Type \"help\" to learn how to interact with Chaoscope Shell."
+        )
+        .unwrap();
         tokio::task::spawn_blocking(move || shell.run_loop(&mut io));
     }
 }
