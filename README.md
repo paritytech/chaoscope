@@ -69,6 +69,7 @@ $ nc x.y.w.z 1234
           ‾
 ⚠️Expect... Chaoshell! ⚠
 Type "help" to learn how to interact with Chaoshell.
+>
 ```
 
 For example, to drag block production with a unit weight extrinsic that calculates hashes in loop of 1000 iterations:
@@ -76,7 +77,7 @@ For example, to drag block production with a unit weight extrinsic that calculat
 > drag_block_unit_weight 1000
 ```
 
-# Runtime Instrumentation
+# Empirical Observations
 
 Chaoscope gives insight about the `pallet-chaos` extrinsics effects on Runtimes that include it.
 
