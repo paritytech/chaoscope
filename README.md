@@ -53,6 +53,29 @@ $ ./chaoscope.sh
 
 2. Interact with the extrinsics via the CLI.
 
+# Chaoshell
+
+A [shrust](https://crates.io/crates/shrust) -based shell is provided by Chaoscope.
+
+Chaoshell is made available at whatever`tty` session initiated the executable.
+
+New shells are also open as TCP sockets at port `1234`, which means you can also connect to Chaoshell from other machines by doing:
+```sh
+$ nc x.y.w.z 1234
+          _
+         ⇖⇑⇗
+         ⇐●⇒
+         ⇙⇓⇘
+          ‾
+⚠️Expect... Chaoshell! ⚠
+Type "help" to learn how to interact with Chaoshell.
+```
+
+For example, to drag block production with a unit weight extrinsic that calculates hashes in loop of 1000 iterations:
+```sh
+> drag_block_unit_weight 1000
+```
+
 # Runtime Instrumentation
 
 Chaoscope gives insight about the `pallet-chaos` extrinsics effects on Runtimes that include it.

@@ -15,11 +15,10 @@
 // along with chaoscope.  If not, see <http://www.gnu.org/licenses/>.
 
 extern crate shrust;
+use chaoscope;
 use futures;
 use shrust::{Shell, ShellIO};
-use std::io::prelude::*;
-
-use chaoscope;
+use std::{io::prelude::*, net::TcpListener};
 
 #[tokio::main]
 async fn main() {
@@ -31,20 +30,20 @@ async fn main() {
     println!("         ⇙⇓⇘");
     println!("          ‾");
     println!("⚠️Expect... Chaoshell! ⚠");
-    println!("Type \"help\" to learn how to interact with Chaoshell");
-    println!("Open http://localhost:3030 on your browser to visualize the output.");
-
-    // stdout via browser
-    tokio::spawn(async move {
-        warp::serve(warp::fs::dir("www"))
-            .run(([127, 0, 0, 1], 3030))
-            .await;
-    });
+    println!("A TCP socket is listening as Chaoshell at port 1234.");
+    println!("You can connect to it from another machine by typing \"nc x.y.w.z 1234\" on a new terminal.");
+    println!("Type \"help\" to learn how to interact with Chaoshell.");
 
     let mut shell = Shell::new(());
 
-    shell.new_command_noargs("drag_block_unit_weight", "Drags block production by calculating hashes in a loop (n times). Uses constant unitary extrinsic weight.", |io, _| {
-        // writeln!(io, "Hello World !!!")?;
+    shell.new_command("drag_block_unit_weight", "Drags block production by calculating hashes in a loop (n times). Uses constant unitary extrinsic weight. Expected args: n", 1 ,|io, _, args| {
+        let n = match args[0].parse::<u32>() {
+            Ok(n) => n,
+            Err(_) => { writeln!(io, "n must be integer!")?; 0 },
+        };
+
+        writeln!(io, "n = {}", n)?;
+
         let rpc_future = chaoscope::rpc_drag_block_unit_weight(10_000_000);
 
         let ret = match futures::executor::block_on(rpc_future) {
@@ -56,10 +55,37 @@ async fn main() {
         Ok(())
     });
 
-    shell.new_command_noargs("drag_block_damp_weight", "Drags block production by calculating hashes in a loop (n times). Uses linear damping on weight (0.0 < wd < 1.0).", |io, _| {
-        writeln!(io, "Hello drag_block_damp_weight !!!")?;
+    shell.new_command("drag_block_damp_weight", "Drags block production by calculating hashes in a loop (n times). Uses linear damping on weight (0.0 < wd < 1.0). Expected args: n, wd", 2 ,|io, _, args|  {
+        let n = match args[0].parse::<u32>() {
+            Ok(n) => n,
+            Err(_) => { writeln!(io, "n must be integer!")?; 0 },
+        };
+
+        let wd = match args[1].parse::<f32>() {
+            Ok(wd) => wd,
+            Err(_) => { writeln!(io, "wd must be float!")?; 0.0 },
+        };
+
+        writeln!(io, "n = {}", n)?;
+        writeln!(io, "wd = {:.2}", wd)?;
         Ok(())
     });
 
-    shell.run_loop(&mut ShellIO::default());
+    let mut shell_io = shell.clone();
+    tokio::task::spawn_blocking(move || shell_io.run_loop(&mut ShellIO::default()));
+
+    let serv = TcpListener::bind("0.0.0.0:1234").expect("Cannot open socket");
+    for sock in serv.incoming() {
+        let sock = sock.unwrap();
+        let mut shell = shell.clone();
+        let mut io = ShellIO::new_io(sock);
+        writeln!(io, "          _").unwrap();
+        writeln!(io, "         ⇖⇑⇗").unwrap();
+        writeln!(io, "         ⇐●⇒").unwrap();
+        writeln!(io, "         ⇙⇓⇘").unwrap();
+        writeln!(io, "          ‾").unwrap();
+        writeln!(io, "⚠️Expect... Chaoshell! ⚠").unwrap();
+        writeln!(io, "Type \"help\" to learn how to interact with Chaoshell.").unwrap();
+        tokio::task::spawn_blocking(move || shell.run_loop(&mut io));
+    }
 }
