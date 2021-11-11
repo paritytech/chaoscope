@@ -36,7 +36,11 @@ async fn main() {
 
     let mut shell = Shell::new(());
 
-    shell.new_command("drag_block_unit_weight", "Drags block production by calculating hashes in a loop (n times). Uses constant unitary extrinsic weight. Expected args: n", 1 ,|io, _, args| {
+    shell.new_command("drag_block_unit_weight", "Drags block production by calculating hashes in a loop (n times). \nUses constant unitary extrinsic weight. \nExpected args: n \nUsage example: drag_block_unit_weight 10000000",
+                      1 ,
+                      |io,
+                       _,
+                       args| {
         let n = match args[0].parse::<u32>() {
             Ok(n) => n,
             Err(_) => { writeln!(io, "n must be integer!")?; 0 },
@@ -55,7 +59,7 @@ async fn main() {
         Ok(())
     });
 
-    shell.new_command("drag_block_damp_weight", "Drags block production by calculating hashes in a loop (n times). Uses linear damping on weight (0.0 < wd < 1.0). Expected args: n, wd", 2 ,|io, _, args|  {
+    shell.new_command("drag_block_damp_weight", "Drags block production by calculating hashes in a loop (n times). \nUses linear damping on weight (0.0 < wd < 1.0). \nExpected args: n wd \nUsage example: drag_block_damp_weight 10000000 0.01", 2 ,|io, _, args|  {
         let n = match args[0].parse::<u32>() {
             Ok(n) => n,
             Err(_) => { writeln!(io, "n must be integer!")?; 0 },
