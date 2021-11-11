@@ -77,6 +77,17 @@ For example, to drag block production with a unit weight extrinsic that calculat
 > drag_block_unit_weight 1000
 ```
 
+# Roadmap
+
+- [x] `drag_block_unit_weight` extrinsic implementation
+- [ ] `drag_block_unit_weight` subxt RPC
+- [ ] `drag_block_damp_weight` extrinsic implementation
+- [ ] `drag_block_damp_weight` subxt RPC
+- [x] `substrate-node-chaos` (`substrate-node-chaos`+`pallet-chaos`)
+- [x] chaoscope shell (`shrust`-based CLI)
+- [x] `chaoscope.sh` (script that bootstraps a local test environment)
+- [ ] `polkadot-launch` support on `chaoscope.sh` (`polkadot`+[`cumulus`+`pallet-chaos`])
+
 # Empirical Observations
 
 Chaoscope gives insight about the `pallet-chaos` extrinsics effects on Runtimes that include it.
