@@ -24,7 +24,7 @@ In the Substrate Ecosystem, Audit stakeholders can be listed as follows:
 - **Ecosystem Curator**: teams working for the quality, success and security of the Ecosystem. Ex.: Parity, W3F.
 - **User Base**: most users don’t have the time to verify 100% of the technology they’re using, so audited technologies provide trust to the user base. Ex.: Acala DeFi traders.
 
-Chaoscope is a toolkit for Offensive Security analysis of Substrate Runtimes. It aims to benefit all Audit stakeholders in the Substrate Ecosystem.
+Chaoscope is a toolkit for Offensive Security analysis of Substrate Runtimes. It aims to benefit Audit stakeholders in the Substrate Ecosystem.
 
 # Runtime Attack Surfaces
 
