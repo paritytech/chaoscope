@@ -21,7 +21,7 @@ add_pallet_chaos()
   git clone ssh://git@github.com/paritytech/pallet-chaos.git
   popd > /dev/null
 
-  git apply pallets/pallet-chaos/diff/add_chaos_runtime.diff
+  git apply diff/add_chaos_runtime.diff
   popd > /dev/null
 }
 
