@@ -93,13 +93,22 @@ get_metadata()
   fi
 }
 
+build_chaoscope()
+{
+  cargo build --release
+}
+
 run_chaoscope()
 {
   get_metadata
 
   echo ""
-  echo "Let's build and run chaoscope..."
-  cargo run --release
+  echo "Let's build chaoscope..."
+  build_chaoscope
+
+  echo ""
+  echo "Let's build chaoscope..."
+  ./target/release/chaoscope
 }
 
 echo ""
