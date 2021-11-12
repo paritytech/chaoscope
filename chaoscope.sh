@@ -36,13 +36,12 @@ build_node_template()
 
 kill_node_template()
 {
-  echo ""
-    NODE_RUNNING=$(ps aux | grep node-template | wc -l)
+  NODE_RUNNING=$(ps aux | grep node-template | wc -l)
 
-    if [ "$NODE_RUNNING" -gt "1" ]; then
-      echo "We need to kill some zombie node-template processes in the system... Please type in your sudo password:"
-      sudo killall node-template
-    fi
+  if [ "$NODE_RUNNING" -gt "1" ]; then
+   echo "We need to kill some zombie node-template processes in the system... Please type in your sudo password:"
+   sudo killall node-template
+  fi
 }
 
 screen_node_template()
