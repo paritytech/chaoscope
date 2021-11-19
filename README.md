@@ -79,10 +79,11 @@ For example, to drag block production with a unit weight extrinsic that calculat
 
 # Roadmap
 
+- [ ] `LinearWeightToFee` struct implementation
 - [x] `drag_block_unit_weight` extrinsic implementation
 - [ ] `drag_block_unit_weight` subxt RPC
-- [ ] `drag_block_damp_weight` extrinsic implementation
-- [ ] `drag_block_damp_weight` subxt RPC
+- [ ] `drag_block_constant_weight` extrinsic implementation
+- [ ] `drag_block_constant_weight` subxt RPC
 - [x] `substrate-node-chaos` (`substrate-node-chaos`+`pallet-chaos`)
 - [x] chaoscope shell (`shrust`-based CLI)
 - [x] `chaoscope.sh` (script that bootstraps a local test environment)
@@ -123,33 +124,33 @@ Drags block production by calculating hashes in a loop (`n` times), with constan
 ## dragBlockDampWeight(wd, n)
 
 - `W = k + A * n`
-- `drag_block_W = k + wd * A * n`
+- `drag_block_W = c`
 
 Drags block production by calculating hashes in a loop (`n` times), with linear damping on weight (`0.0 < wd < 1.0`).
 
-|       n       |  wd | added block time |
-|:-------------:|:---:|:----------------:|
-|   1_000_000   | 0.3 |         x        |
-|   5_000_000   | 0.3 |         x        |
-|   10_000_000  | 0.3 |         x        |
-|   50_000_000  | 0.3 |         x        |
-|  100_000_000  | 0.3 |         x        |
-|  500_000_000  | 0.3 |         x        |
-| 1_000_000_000 | 0.3 |         x        |
-|   1_000_000   | 0.6 |         x        |
-|   5_000_000   | 0.6 |         x        |
-|   10_000_000  | 0.6 |         x        |
-|   50_000_000  | 0.6 |         x        |
-|  100_000_000  | 0.6 |         x        |
-|  500_000_000  | 0.6 |         x        |
-| 1_000_000_000 | 0.6 |         x        |
-|   1_000_000   | 0.9 |         x        |
-|   5_000_000   | 0.9 |         x        |
-|   10_000_000  | 0.9 |         x        |
-|   50_000_000  | 0.9 |         x        |
-|  100_000_000  | 0.9 |         x        |
-|  500_000_000  | 0.9 |         x        |
-| 1_000_000_000 | 0.9 |         x        |
+|       n       |  c  | added block time | fees |
+|:-------------:|:---:|:----------------:|:----:|
+|   1_000_000   |   1_000_000 |x|y|
+|   5_000_000   |   1_000_000 |x|y|
+|   10_000_000  |   1_000_000 |x|y|
+|   50_000_000  |   1_000_000 |x|y|
+|  100_000_000  |   1_000_000 |x|y|
+|  500_000_000  |   1_000_000 |x|y|
+| 1_000_000_000 |   1_000_000 |x|y|
+|   1_000_000   |  10_000_000 |x|y|
+|   5_000_000   |  10_000_000 |x|y|
+|   10_000_000  |  10_000_000 |x|y|
+|   50_000_000  |  10_000_000 |x|y|
+|  100_000_000  |  10_000_000 |x|y|
+|  500_000_000  |  10_000_000 |x|y|
+| 1_000_000_000 |  10_000_000 |x|y|
+|   1_000_000   | 100_000_000 |x|y|
+|   5_000_000   | 100_000_000 |x|y|
+|   10_000_000  | 100_000_000 |x|y|
+|   50_000_000  | 100_000_000 |x|y|
+|  100_000_000  | 100_000_000 |x|y|
+|  500_000_000  | 100_000_000 |x|y|
+| 1_000_000_000 | 100_000_000 |x|y|
 
 # License
 
