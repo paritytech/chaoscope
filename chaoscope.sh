@@ -21,7 +21,7 @@ add_pallet_chaos()
   git clone ssh://git@github.com/paritytech/pallet-chaos.git
   popd > /dev/null
 
-  git apply diff/add_chaos_runtime.diff
+  git apply ../diff/add_chaos_runtime.diff
   popd > /dev/null
 }
 
@@ -30,6 +30,10 @@ build_node_template()
   echo ""
   echo "Let's build the node-template executable..."
   pushd substrate-node-chaos > /dev/null
+
+  # TODO
+  # WASM vs Native
+
   cargo build --release
   popd > /dev/null
 }
