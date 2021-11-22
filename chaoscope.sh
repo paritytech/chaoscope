@@ -110,7 +110,7 @@ run_chaoscope()
   build_chaoscope
 
   echo ""
-  echo "Let's build chaoscope..."
+  echo "Let's run chaoscope..."
   ./target/release/chaoscope
 }
 
