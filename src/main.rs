@@ -52,10 +52,9 @@ async fn main() {
 
         let ret = match futures::executor::block_on(rpc_future) {
             Ok(r) => r,
-            Err(e) => { println!("err: {}", e); 0 },
+            Err(e) => { println!("err: {}", e); () },
         };
 
-        writeln!(io, "{}", ret)?;
         Ok(())
     });
 

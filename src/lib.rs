@@ -16,19 +16,32 @@
 
 // chaoscope RPC calls
 
-use env_logger;
-use subxt::ClientBuilder;
+use sp_keyring::AccountKeyring;
+use subxt::{ClientBuilder, PairSigner};
 
 #[subxt::subxt(runtime_metadata_path = "metadata/substrate-node-chaos.scale")]
 pub mod chaosrpc {}
 
-pub async fn rpc_drag_block_unit_weight(n: u32) -> Result<u32, Box<dyn std::error::Error>> {
+pub async fn rpc_drag_block_unit_weight(n: u32) -> Result<(), Box<dyn std::error::Error>> {
+    //let signer = PairSigner::new(AccountKeyring::Alice.pair());
     let api = ClientBuilder::new()
-        .set_url("wss://localhost:9944")
         .build()
         .await?
         .to_runtime_api::<chaosrpc::RuntimeApi<chaosrpc::DefaultConfig>>();
 
-    let ret = 1;
-    Ok(ret)
+    let result = api.tx();
+    // .drag_block_unit_weight(n)
+    // .sign_and_submit_then_watch(&signer)
+    // .await?;
+
+    // get fees paid
+    // get execution time
+
+    // if let Some(event) = result.find_event::<chaosrpc::chaos::events::Stalled>()? {
+    //     println!("drag_block_unit_weight success: n: {:?}", event.2);
+    // } else {
+    //     println!("drag_block_unit_weight failed");
+    // }
+
+    Ok(())
 }
