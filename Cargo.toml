@@ -14,8 +14,13 @@ keywords = ["parity", "substrate", "blockchain", "chaos"]
 include = ["Cargo.toml", "src/**/*.rs", "README.md", "LICENSE"]
 
 [dependencies]
+
+# substrate deps
 subxt = { git = "https://github.com/paritytech/subxt.git", branch = "master" }
 codec = { package = "parity-scale-codec", version = "2", default-features = false, features = ["derive", "full", "bit-vec"] }
+sp-keyring = { package = "sp-keyring", git = "https://github.com/paritytech/substrate/", branch = "master" }
+
+# general deps
 tokio = { version = "1", features = ["full"] }
 env_logger = "0.8.3"
 pretty_env_logger = "0.4"
