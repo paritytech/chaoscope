@@ -108,25 +108,19 @@ For each extrinsic provided by `pallet-chaos`, a table is displayed with the rel
 
 Drags block production by calculating hashes in a loop (`n` times), with constant unitary extrinsic weight.
 
-- `W = k + A * n`
-- `drag_block_W = 1`
+|       n       | added block time | fees |
+|:-------------:|:----------------:|:----:|
+|   1_000_000   |         x        |y|
+|   5_000_000   |         x        |y|
+|   10_000_000  |         x        |y|
+|   50_000_000  |         x        |y|
+|  100_000_000  |         x        |y|
+|  500_000_000  |         x        |y|
+| 1_000_000_000 |         x        |y|
 
-|       n       | added block time |
-|:-------------:|:----------------:|
-|   1_000_000   |         x        |
-|   5_000_000   |         x        |
-|   10_000_000  |         x        |
-|   50_000_000  |         x        |
-|  100_000_000  |         x        |
-|  500_000_000  |         x        |
-| 1_000_000_000 |         x        |
+## dragBlockConstantWeight(n, c)
 
-## dragBlockDampWeight(wd, n)
-
-- `W = k + A * n`
-- `drag_block_W = c`
-
-Drags block production by calculating hashes in a loop (`n` times), with linear damping on weight (`0.0 < wd < 1.0`).
+Drags block production by calculating hashes in a loop (`n` times), with constant custom weight (`c`).
 
 |       n       |  c  | added block time | fees |
 |:-------------:|:---:|:----------------:|:----:|
