@@ -72,9 +72,9 @@ Type "help" to learn how to interact with Chaoscope Shell.
 >
 ```
 
-For example, to drag block production with a unit weight extrinsic that calculates hashes in loop of 1000 iterations:
+For example, to drag block production with a unit weight extrinsic that calculates hashes in loop of 10 Million iterations:
 ```sh
-> drag_block_unit_weight 1000
+> drag_block_unit_weight 10000000
 ```
 
 # Roadmap
