@@ -57,7 +57,7 @@ screen_node_template()
 
 run_node_template()
 {
-if [ ! -d "substrate-node-chaos" ]; then
+  if [ ! -d "substrate-node-chaos" ]; then
     clone_node_template
     add_pallet_chaos
   fi
@@ -114,16 +114,6 @@ run_chaoscope()
   ./target/release/chaoscope
 }
 
-echo ""
-echo "   🅂⒰𝕭𝓼ṪᴙȺՇ乇"
-echo "       _"
-echo "      ⇖⇑⇗"
-echo "      ⇐●⇒"
-echo "      ⇙⇓⇘"
-echo "       ‾"
-echo "     ȻнД⓿丂"
-echo ""
-echo "⚠️Expect... Chaoscope! ⚠"
 echo ""
 echo "Our local setup will be based on:"
 echo " - [substrate-node-template](https://github.com/substrate-developer-hub/substrate-node-template)"
