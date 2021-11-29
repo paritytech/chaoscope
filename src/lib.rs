@@ -22,26 +22,27 @@ use subxt::{ClientBuilder, PairSigner};
 #[subxt::subxt(runtime_metadata_path = "metadata/substrate-node-chaos.scale")]
 pub mod chaosrpc {}
 
-pub async fn rpc_drag_block_unit_weight(n: u32) -> Result<(), Box<dyn std::error::Error>> {
-    //let signer = PairSigner::new(AccountKeyring::Alice.pair());
+pub async fn rpc_drag_block_unit_weight(n: u64) -> Result<(), Box<dyn std::error::Error>> {
+    let signer = PairSigner::new(AccountKeyring::Alice.pair());
     let api = ClientBuilder::new()
         .build()
         .await?
         .to_runtime_api::<chaosrpc::RuntimeApi<chaosrpc::DefaultConfig>>();
 
-    let result = api.tx();
-    // .drag_block_unit_weight(n)
-    // .sign_and_submit_then_watch(&signer)
-    // .await?;
+    let result = api
+        .tx()
+        .chaos()
+        .drag_block_unit_weight(n)
+        .sign_and_submit_then_watch(&signer)
+        .await?;
 
     // get fees paid
-    // get execution time
 
-    // if let Some(event) = result.find_event::<chaosrpc::chaos::events::Stalled>()? {
-    //     println!("drag_block_unit_weight success: n: {:?}", event.2);
-    // } else {
-    //     println!("drag_block_unit_weight failed");
-    // }
+    if let Some(event) = result.find_event::<chaosrpc::chaos::events::Stalled>()? {
+        println!("drag_block_unit_weight success: n: {:?}", event.0);
+    } else {
+        println!("drag_block_unit_weight failed");
+    }
 
     Ok(())
 }

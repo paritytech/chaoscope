@@ -17,82 +17,43 @@
 extern crate shrust;
 use chaoscope;
 use futures;
-use shrust::{Shell, ShellIO};
-use std::{io::prelude::*, net::TcpListener};
+use structopt::StructOpt;
+
+#[derive(Debug, StructOpt)]
+enum Cmd {
+    #[structopt(about = "Drags block production with unitary weight")]
+    DragBlockUnitWeight {
+        #[structopt(short = "n", default_value = "100_000_000")]
+        n: u64,
+    },
+    Dummy {
+        #[structopt(short = "n", default_value = "100_000_000")]
+        n: u64,
+    },
+}
+
+#[derive(Debug, StructOpt)]
+enum Opt {
+    #[structopt(flatten)]
+    Cmd(Cmd),
+}
 
 #[tokio::main]
 async fn main() {
     pretty_env_logger::init();
 
-    println!("          _");
-    println!("         ⇖⇑⇗");
-    println!("         ⇐●⇒");
-    println!("         ⇙⇓⇘");
-    println!("          ‾");
-    println!("⚠️Expect... Chaoscope Shell! ⚠");
-    println!("A TCP socket is listening as Chaoscope Shell at port 1234.");
-    println!("You can connect to it from another machine by typing \"nc x.y.w.z 1234\" on a new terminal.");
-    println!("Type \"help\" to learn how to interact with Chaoscope Shell.");
-
-    let mut shell = Shell::new(());
-
-    shell.new_command("drag_block_unit_weight", "Drags block production by calculating hashes in a loop (n times). \nUses constant unitary extrinsic weight. \nExpected args: n \nUsage example: drag_block_unit_weight 10000000",
-                      1 ,
-                      |io,
-                       _,
-                       args| {
-        let n = match args[0].parse::<u32>() {
-            Ok(n) => n,
-            Err(_) => { writeln!(io, "n must be integer!")?; 0 },
-        };
-
-        writeln!(io, "n = {}", n)?;
-
-        let rpc_future = chaoscope::rpc_drag_block_unit_weight(10_000_000);
-
-        let ret = match futures::executor::block_on(rpc_future) {
-            Ok(r) => r,
-            Err(e) => { println!("err: {}", e); () },
-        };
-
-        Ok(())
-    });
-
-    shell.new_command("drag_block_damp_weight", "Drags block production by calculating hashes in a loop (n times). \nUses linear damping on weight (0.0 < wd < 1.0). \nExpected args: n wd \nUsage example: drag_block_damp_weight 10000000 0.01", 2 ,|io, _, args|  {
-        let n = match args[0].parse::<u32>() {
-            Ok(n) => n,
-            Err(_) => { writeln!(io, "n must be integer!")?; 0 },
-        };
-
-        let wd = match args[1].parse::<f32>() {
-            Ok(wd) => wd,
-            Err(_) => { writeln!(io, "wd must be float!")?; 0.0 },
-        };
-
-        writeln!(io, "n = {}", n)?;
-        writeln!(io, "wd = {:.2}", wd)?;
-        Ok(())
-    });
-
-    let mut shell_io = shell.clone();
-    tokio::task::spawn_blocking(move || shell_io.run_loop(&mut ShellIO::default()));
-
-    let serv = TcpListener::bind("0.0.0.0:1234").expect("Cannot open socket");
-    for sock in serv.incoming() {
-        let sock = sock.unwrap();
-        let mut shell = shell.clone();
-        let mut io = ShellIO::new_io(sock);
-        writeln!(io, "          _").unwrap();
-        writeln!(io, "         ⇖⇑⇗").unwrap();
-        writeln!(io, "         ⇐●⇒").unwrap();
-        writeln!(io, "         ⇙⇓⇘").unwrap();
-        writeln!(io, "          ‾").unwrap();
-        writeln!(io, "⚠️Expect... Chaoscope Shell! ⚠").unwrap();
-        writeln!(
-            io,
-            "Type \"help\" to learn how to interact with Chaoscope Shell."
-        )
-        .unwrap();
-        tokio::task::spawn_blocking(move || shell.run_loop(&mut io));
+    match Cmd::from_args() {
+        Cmd::DragBlockUnitWeight { n } => {
+            let rpc_future = chaoscope::rpc_drag_block_unit_weight(n);
+            let ret = match futures::executor::block_on(rpc_future) {
+                Ok(r) => r,
+                Err(e) => {
+                    println!("err: {}", e);
+                }
+            };
+        }
+        Cmd::Dummy { n } => {
+            println!("Dummy")
+        }
     }
 }

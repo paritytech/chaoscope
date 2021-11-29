@@ -53,29 +53,7 @@ $ bash chaoscope.sh
 
 2. Interact with the extrinsics via the CLI.
 
-# Chaoscope Shell
-
-A [shrust](https://crates.io/crates/shrust) based shell is provided by Chaoscope.
-
-Chaoscope Shell is made available at whatever`tty` session initiated the executable.
-
-New shells are also open as TCP sockets at port `1234`, which means you can also connect to Chaoscope Shell from other machines by doing:
-```sh
-$ nc x.y.w.z 1234
-          _
-         ⇖⇑⇗
-         ⇐●⇒
-         ⇙⇓⇘
-          ‾
-⚠️Expect... Chaoscope Shell! ⚠
-Type "help" to learn how to interact with Chaoscope Shell.
->
-```
-
-For example, to drag block production with a unit weight extrinsic that calculates hashes in loop of 10 Million iterations:
-```sh
-> drag_block_unit_weight 10000000
-```
+xxx
 
 # Roadmap
 
@@ -85,7 +63,6 @@ For example, to drag block production with a unit weight extrinsic that calculat
 - [ ] `drag_block_damp_weight` extrinsic implementation
 - [ ] `drag_block_damp_weight` subxt RPC
 - [x] `substrate-node-chaos` (`substrate-node-chaos`+`pallet-chaos`)
-- [x] chaoscope shell (`shrust`-based CLI)
 - [x] `chaoscope.sh` (script that bootstraps a local test environment)
 - [ ] `polkadot-launch` support on `chaoscope.sh` (`polkadot`+[`cumulus`+`pallet-chaos`])
 
