@@ -26,10 +26,6 @@ enum Cmd {
         #[structopt(short = "n", default_value = "100_000_000")]
         n: u64,
     },
-    Dummy {
-        #[structopt(short = "n", default_value = "100_000_000")]
-        n: u64,
-    },
 }
 
 #[derive(Debug, StructOpt)]
@@ -45,15 +41,12 @@ async fn main() {
     match Cmd::from_args() {
         Cmd::DragBlockUnitWeight { n } => {
             let rpc_future = chaoscope::rpc_drag_block_unit_weight(n);
-            let ret = match futures::executor::block_on(rpc_future) {
+            match futures::executor::block_on(rpc_future) {
                 Ok(r) => r,
                 Err(e) => {
-                    println!("err: {}", e);
+                    panic!("err: {}", e);
                 }
             };
-        }
-        Cmd::Dummy { n } => {
-            println!("Dummy")
         }
     }
 }

@@ -57,11 +57,8 @@ xxx
 
 # Roadmap
 
-- [ ] `LinearWeightToFee` struct implementation
 - [x] `drag_block_unit_weight` extrinsic implementation
-- [ ] `drag_block_unit_weight` subxt RPC
-- [ ] `drag_block_damp_weight` extrinsic implementation
-- [ ] `drag_block_damp_weight` subxt RPC
+- [x] `drag_block_unit_weight` subxt RPC
 - [x] `substrate-node-chaos` (`substrate-node-chaos`+`pallet-chaos`)
 - [x] `chaoscope.sh` (script that bootstraps a local test environment)
 - [ ] `polkadot-launch` support on `chaoscope.sh` (`polkadot`+[`cumulus`+`pallet-chaos`])
@@ -85,15 +82,15 @@ For each extrinsic provided by `pallet-chaos`, a table is displayed with the rel
 
 Drags block production by calculating hashes in a loop (`n` times), with constant unitary extrinsic weight.
 
-|       n       | added block time | fees |
-|:-------------:|:----------------:|:----:|
-|   1_000_000   |         x        |y|
-|   5_000_000   |         x        |y|
-|   10_000_000  |         x        |y|
-|   50_000_000  |         x        |y|
-|  100_000_000  |         x        |y|
-|  500_000_000  |         x        |y|
-| 1_000_000_000 |         x        |y|
+|       n       | block execution time |
+|:-------------:|:----------------:|
+|   1_000_000   |         x        |
+|   5_000_000   |         x        |
+|   10_000_000  |         x        |
+|   50_000_000  |         x        |
+|  100_000_000  |         x        |
+|  500_000_000  |         x        |
+| 1_000_000_000 |         x        |
 
 # License
 
