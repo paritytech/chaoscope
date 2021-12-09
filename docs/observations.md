@@ -10,15 +10,13 @@ For each extrinsic provided by `pallet-chaos`, a table is displayed with the rel
 
 Drags block production by calculating hashes in a loop (`n` times), with constant unitary extrinsic weight.
 
-|       n       | block execution time |
+|       n       | block execution time (ms) |
 |:-------------:|:----------------:|
-|   1_000_000   |         x        |
-|   5_000_000   |         x        |
-|   10_000_000  |         x        |
-|   50_000_000  |         x        |
-|  100_000_000  |         x        |
-|  500_000_000  |         x        |
-| 1_000_000_000 |         x        |
+|   1_000_000   |         6000        |
+|   5_000_000   |         20001        |
+|   10_000_000  |         32000        |
+|   50_000_000  |         86001        |
+|  100_000_000  |         346000        |
 
 
 # Machine Specs
