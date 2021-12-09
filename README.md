@@ -63,35 +63,6 @@ xxx
 - [x] `chaoscope.sh` (script that bootstraps a local test environment)
 - [ ] `polkadot-launch` support on `chaoscope.sh` (`polkadot`+[`cumulus`+`pallet-chaos`])
 
-# Empirical Observations
-
-Chaoscope gives insight about the `pallet-chaos` extrinsics effects on Runtimes that include it.
-
-Below are some empirical observations collected from a `substrate-node-template` with `pallet-chaos` added to it.
-The machine had the following specs:
-
-- CPU:
-- RAM:
-- Disk:
-- PCI Drivers:
-- Other Hardware:
-
-For each extrinsic provided by `pallet-chaos`, a table is displayed with the relevant data.
-
-## dragBlockUnitWeight(n)
-
-Drags block production by calculating hashes in a loop (`n` times), with constant unitary extrinsic weight.
-
-|       n       | block execution time |
-|:-------------:|:----------------:|
-|   1_000_000   |         x        |
-|   5_000_000   |         x        |
-|   10_000_000  |         x        |
-|   50_000_000  |         x        |
-|  100_000_000  |         x        |
-|  500_000_000  |         x        |
-| 1_000_000_000 |         x        |
-
 # License
 
 <sup>
