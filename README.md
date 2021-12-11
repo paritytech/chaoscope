@@ -4,6 +4,9 @@ RPC Instrumentation toolkit for [pallet-chaos](https://github.com/paritytech/pal
 
 Built with [subxt](https://github.com/paritytech/subxt) for *Substrate Offensive Security*.
 
+# Similar Projects
+- [PolPatrol – Validator for Polkadot Runtimes](https://chainsecurity.com/polpatrol-validator-for-polkadot-runtimes/)
+
 # Introduction
 
 In the Ethereum world, Smart Contracts are audited for their correctness and security. The audit process starts from the determinism of the EVM, and a detailed analysis of most (ideally all) possible logical scenarios that the contract bytecode can generate is carried out with the goal of asserting that:
