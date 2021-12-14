@@ -1,33 +1,16 @@
 # Substrate Chaoscope
 
-RPC Instrumentation toolkit for [pallet-chaos](https://github.com/paritytech/pallet-chaos).
+**Substrate Chaoscope** is a [subxt](https://github.com/paritytech/subxt) based RPC Instrumentation toolkit for [pallet-chaos](https://github.com/paritytech/pallet-chaos).
 
-Built with [subxt](https://github.com/paritytech/subxt) for *Substrate Offensive Security*.
 
+Chaoscope makes Substrate Runtimes behave in ways that they're not supposed to, with the following goals: 
+- Explore Runtime edge cases. 
+- Explore Extrinsic weights and their economic implications.
+- Expose Runtime Attack Vectors.
+- Raise awareness about Benchmarking and Weight Design.
+- 
 # Similar Projects
 - [PolPatrol – Validator for Polkadot Runtimes](https://chainsecurity.com/polpatrol-validator-for-polkadot-runtimes/)
-
-# Introduction
-
-In the Ethereum world, Smart Contracts are audited for their correctness and security. The audit process starts from the determinism of the EVM, and a detailed analysis of most (ideally all) possible logical scenarios that the contract bytecode can generate is carried out with the goal of asserting that:
-- The Smart Contract does what it claims to do (correctness).
-- The Smart Contract does not do what it never claimed to do (transparency).
-- The Smart Contract cannot be exploited via attack vectors (security).
-
-The majority of Ethereum Smart Contracts are written as Solidity/Vyper source code. Like any programming language, reusable logic is an emerging phenomenon. This gives rise to the OpenZeppeling business model, where pre-audited reusable Solidity code is provided as Open Source Software, accelerating development and increasing security across the whole Ethereum Ecosystem.
-
-In terms of Substrate, a similar analysis can be done, although in two separate categories:
-- **Runtime Pallets**: the State Transition Function (STF) of each Runtime consists of a set of deterministic input/output logical operations, commonly modularized into pallets. The audit process of a pallet consists of a detailed analysis of the correctness and security of most (ideally all) possible logical scenarios that a Runtime can be subjected to when using such a pallet.
-- **Smart Contracts**: also consist of a set of deterministic input/output logic, but instead of having it reside as Runtime extrinsics, such logic is encoded as bytecode under some custom Virtual Machine specification (usually Turing Complete). The audit process of a Substrate Smart Contract starts at the VM specification and checks for the correctness and security of most (if not all) possible logical scenarios that the Smart Contract bytecode can be subjected to. Note: Substrate Smart Contracts are not yet covered by chaoscope.
-
-In the Substrate Ecosystem, Audit stakeholders can be listed as follows:
-- **Auditing Firm**: a third party service provider. Ideally, they have a solid grasp on the audited technologies and a know-how on offensive security best practices. Ex.: CertiK, SRLabs.
-- **Audited Team**: some Substrate team who wrote a Runtime (or a pallet) and needs their source code audited. Ex.: Acala.
-- **Substrate Ecosystem**: any teams that benefit from the Open Source Software written by the Audited Team. Ex.: some SBP team using a pre-audited pallet.
-- **Ecosystem Curator**: teams working for the quality, success and security of the Ecosystem. Ex.: Parity, W3F.
-- **User Base**: most users don’t have the time to verify 100% of the technology they’re using, so audited technologies provide trust to the user base. Ex.: Acala DeFi traders.
-
-Chaoscope is a toolkit for Offensive Security analysis of Substrate Runtimes. It aims to benefit Audit stakeholders in the Substrate Ecosystem.
 
 # Runtime Attack Surfaces
 
@@ -41,30 +24,24 @@ The relationship between fees and computational resources allocated from the DVM
 
 While Ethereum introduced the concept of Gas as a correlation between EVM resource consumption and economical fees, Substrate uses Weights so that Runtime Engineers can attribute appropriate fees for each extrinsic operation of their pallets. Properly engineered transaction fees are a fundamental property of a attack-resistant pallet.
 
-## Protocol Vectors
-
-// ToDo: describe protocol attack vectors.
-
 # Instructions
 
-1. Set up a local test environment:
+1. To deploy a test setup:
 ```sh
 $ git clone https://github.com/paritytech/chaoscope.git
 $ cd chaoscope
 $ bash chaoscope.sh
 ```
 
-2. Interact with the extrinsics via the CLI.
-
-xxx
+The script will deploy a `substrate-node-template` with `pallet-chaos`, fire extrinsics to it and report the resutls.
 
 # Roadmap
 
 - [x] `drag_block_unit_weight` extrinsic implementation
 - [x] `drag_block_unit_weight` subxt RPC
 - [x] `substrate-node-chaos` (`substrate-node-chaos`+`pallet-chaos`)
-- [x] `chaoscope.sh` (script that bootstraps a local test environment)
-- [ ] `polkadot-launch` support on `chaoscope.sh` (`polkadot`+[`cumulus`+`pallet-chaos`])
+- [x] `chaoscope.sh`
+- [ ] Relay Chain support on `chaoscope.sh` (`polkadot`+[`cumulus`+`pallet-chaos`])
 
 # License
 
