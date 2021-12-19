@@ -18,20 +18,31 @@
 
 use sp_keyring::AccountKeyring;
 use std::time::Duration;
-use subxt::{ClientBuilder, PairSigner};
+use subxt::{
+    extrinsic::{PairSigner, Signer},
+    ClientBuilder,
+};
 
 #[subxt::subxt(runtime_metadata_path = "metadata/substrate-node-chaos.scale")]
 pub mod chaosrpc {}
 
 pub async fn rpc_drag_block_unit_weight(n: u64) -> Result<(), Box<dyn std::error::Error>> {
     // alice signer
-    let signer = PairSigner::new(AccountKeyring::Alice.pair());
+    // let signer = PairSigner::new(AccountKeyring::Alice.pair());
+    let signer = PairSigner::<chaosrpc::DefaultConfig, _>::new(AccountKeyring::Alice.pair());
 
     // runtime API
     let api = ClientBuilder::new()
         .build()
         .await?
         .to_runtime_api::<chaosrpc::RuntimeApi<chaosrpc::DefaultConfig>>();
+
+    // get signer balance before
+    let balance_before = api
+        .storage()
+        .system()
+        .account(signer.account_id().clone(), None)
+        .await?;
 
     // block subscriber
     let mut sub = api.client.rpc().subscribe_blocks().await.unwrap();
@@ -67,6 +78,13 @@ pub async fn rpc_drag_block_unit_weight(n: u64) -> Result<(), Box<dyn std::error
         panic!("Event not found!");
     }
 
+    // get signer balance after
+    let balance_after = api
+        .storage()
+        .system()
+        .account(signer.account_id().clone(), None)
+        .await?;
+
     // get head block timestamp
     let head_block_hash = loop {
         if let Ok(Some(block)) = sub.next().await {
@@ -87,8 +105,14 @@ pub async fn rpc_drag_block_unit_weight(n: u64) -> Result<(), Box<dyn std::error
     let d = Duration::from_millis(block_time);
 
     // get fees paid
+    let fees_paid = balance_before.data.free - balance_after.data.free;
 
-    println!("n: {}, block execution time: {} ms", n, d.as_millis());
+    println!(
+        "n: {}, block execution time: {} ms, fees paid: {}",
+        n,
+        d.as_millis(),
+        fees_paid
+    );
 
     Ok(())
 }
