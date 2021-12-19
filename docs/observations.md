@@ -7,8 +7,7 @@ Below are some empirical observations collected from a `substrate-node-template`
 For each extrinsic provided by `pallet-chaos`, a table is displayed with the relevant data.
 
 ## dragBlockUnitWeight(n)
-
-Drags block production by calculating hashes in a loop (`n` times), with constant unitary extrinsic weight.
+Injects a heavy computation payload into the runtime, effectively dragging block production by calculating hashes in a loop (n times), with constant unitary extrinsic weight.
 
 |       n       | block execution time (ms) | fees charges |
 |:-------------:|:----------------:|:------:|
