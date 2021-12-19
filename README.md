@@ -8,7 +8,7 @@ Chaoscope makes Substrate Runtimes behave in ways that they're not supposed to, 
 - Explore Extrinsic weights and their economic implications.
 - Expose Runtime Attack Vectors.
 - Raise awareness about Benchmarking and Weight Design.
-- 
+
 # Similar Projects
 - [PolPatrol – Validator for Polkadot Runtimes](https://chainsecurity.com/polpatrol-validator-for-polkadot-runtimes/)
 
