@@ -10,14 +10,13 @@ For each extrinsic provided by `pallet-chaos`, a table is displayed with the rel
 
 Drags block production by calculating hashes in a loop (`n` times), with constant unitary extrinsic weight.
 
-|       n       | block execution time (ms) |
-|:-------------:|:----------------:|
-|   1_000_000   |         6000        |
-|   5_000_000   |         20001        |
-|   10_000_000  |         32000        |
-|   50_000_000  |         86001        |
-|  100_000_000  |         346000        |
-
+|       n       | block execution time (ms) | fees charges |
+|:-------------:|:----------------:|:------:|
+|   1_000_000   |         6_000        | 125_000_114 |
+|   5_000_000   |         20_001        | 125_000_114 |
+|   10_000_000  |         32_000        | 125_000_114 |
+|   50_000_000  |         86_001        | 125_000_114 |
+|  100_000_000  |         346_000        | 125_000_114 |
 
 # Machine Specs
 The machine was a Google Cloud `n2-standard-4` with the following specs:
