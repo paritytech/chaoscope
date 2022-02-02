@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 SUBSTRATE_V="3.0.0"
 SUBSTRATE_TIMESTAMP="monthly-2021-10"
