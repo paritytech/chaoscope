@@ -37,10 +37,14 @@ The script will deploy a `substrate-node-template` with `pallet-chaos`, fire ext
 
 # Roadmap
 
+- [x] `unwrap_add` extrinsic implementation
+- [x] `unwrap_add` subxt RPC
+- [x] `overflow_adder` extrinsic implementation
+- [x] `overflow_adder` subxt RPC
+- [x] `clear_adder` extrinsic implementation
+- [x] `clear_adder` subxt RPC
 - [x] `drag_block_unit_weight` extrinsic implementation
 - [x] `drag_block_unit_weight` subxt RPC
-- [ ] `drag_block_custom_weight` extrinsic implementation
-- [ ] `drag_block_custom_weight` subxt RPC
 - [x] `substrate-node-chaos` (`substrate-node-chaos`+`pallet-chaos`)
 - [x] `chaoscope.sh`
 - [ ] Relay Chain support on `chaoscope.sh` (`polkadot`+[`cumulus`+`pallet-chaos`])

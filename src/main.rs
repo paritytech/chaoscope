@@ -21,6 +21,15 @@ use structopt::StructOpt;
 
 #[derive(Debug, StructOpt)]
 enum Cmd {
+    #[structopt(about = "Illustrates how unwrap can go bad")]
+    UnwrapAdd {},
+    #[structopt(about = "Storage Integer Overflow Adder")]
+    OverflowAdder {
+        #[structopt(short = "n", default_value = "100_000_000")]
+        n: u32,
+    },
+    #[structopt(about = "Clear Storage Integer Overflow Adder")]
+    ClearAdder {},
     #[structopt(about = "Drags block production with unitary weight")]
     DragBlockUnitWeight {
         #[structopt(short = "n", default_value = "100_000_000")]
@@ -37,8 +46,34 @@ enum Opt {
 #[tokio::main]
 async fn main() {
     pretty_env_logger::init();
-
     match Cmd::from_args() {
+        Cmd::UnwrapAdd {} => {
+            let rpc_future = chaoscope::rpc_unwrap_add();
+            match futures::executor::block_on(rpc_future) {
+                Ok(r) => r,
+                Err(e) => {
+                    panic!("err: {}", e);
+                }
+            };
+        }
+        Cmd::OverflowAdder { n } => {
+            let rpc_future = chaoscope::rpc_overflow_adder(n);
+            match futures::executor::block_on(rpc_future) {
+                Ok(r) => r,
+                Err(e) => {
+                    panic!("err: {}", e);
+                }
+            };
+        }
+        Cmd::ClearAdder {} => {
+            let rpc_future = chaoscope::rpc_clear_adder();
+            match futures::executor::block_on(rpc_future) {
+                Ok(r) => r,
+                Err(e) => {
+                    panic!("err: {}", e);
+                }
+            };
+        }
         Cmd::DragBlockUnitWeight { n } => {
             let rpc_future = chaoscope::rpc_drag_block_unit_weight(n);
             match futures::executor::block_on(rpc_future) {
