@@ -47,7 +47,7 @@ pub async fn rpc_unwrap_add() -> Result<(), Box<dyn std::error::Error>> {
 
     // check event
     if result
-        .find_event::<chaosrpc::chaos::events::Stalled>()?
+        .find_event::<chaosrpc::chaos::events::Added>()?
         .is_none()
     {
         panic!("Event not found!");
@@ -56,7 +56,7 @@ pub async fn rpc_unwrap_add() -> Result<(), Box<dyn std::error::Error>> {
     Ok(())
 }
 
-pub async fn rpc_overflow_adder(n: u32) -> Result<(), Box<dyn std::error::Error>> {
+pub async fn rpc_overflow_adder(n: u32) -> Result<u32, Box<dyn std::error::Error>> {
     // alice signer
     // let signer = PairSigner::new(AccountKeyring::Alice.pair());
     let signer = PairSigner::<chaosrpc::DefaultConfig, _>::new(AccountKeyring::Alice.pair());
@@ -77,13 +77,16 @@ pub async fn rpc_overflow_adder(n: u32) -> Result<(), Box<dyn std::error::Error>
 
     // check event
     if result
-        .find_event::<chaosrpc::chaos::events::Stalled>()?
+        .find_event::<chaosrpc::chaos::events::Added>()?
         .is_none()
     {
         panic!("Event not found!");
     }
 
-    Ok(())
+    let storage = api.storage().chaos();
+    let adder = storage.adder(None).await.unwrap().unwrap();
+
+    Ok(adder)
 }
 
 pub async fn rpc_clear_adder() -> Result<(), Box<dyn std::error::Error>> {

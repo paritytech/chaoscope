@@ -59,7 +59,7 @@ async fn main() {
         Cmd::OverflowAdder { n } => {
             let rpc_future = chaoscope::rpc_overflow_adder(n);
             match futures::executor::block_on(rpc_future) {
-                Ok(r) => r,
+                Ok(r) => println!("current adder storage value: {}", r),
                 Err(e) => {
                     panic!("err: {}", e);
                 }
