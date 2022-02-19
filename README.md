@@ -2,7 +2,6 @@
 
 **Substrate Chaoscope** is a [subxt](https://github.com/paritytech/subxt) based RPC Instrumentation toolkit for [pallet-chaos](https://github.com/paritytech/pallet-chaos).
 
-
 Chaoscope makes Substrate Runtimes behave in ways that they're not supposed to, with the following goals: 
 - Explore Runtime edge cases. 
 - Explore Extrinsic weights and their economic implications.
@@ -37,8 +36,6 @@ The script will deploy a `substrate-node-template` with `pallet-chaos`, fire ext
 
 # Roadmap
 
-- [x] `unwrap_add` extrinsic implementation
-- [x] `unwrap_add` subxt RPC
 - [x] `overflow_adder` extrinsic implementation
 - [x] `overflow_adder` subxt RPC
 - [x] `clear_adder` extrinsic implementation

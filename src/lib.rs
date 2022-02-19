@@ -26,36 +26,6 @@ use subxt::{
 #[subxt::subxt(runtime_metadata_path = "metadata/substrate-node-chaos.scale")]
 pub mod chaosrpc {}
 
-pub async fn rpc_unwrap_add() -> Result<(), Box<dyn std::error::Error>> {
-    // alice signer
-    // let signer = PairSigner::new(AccountKeyring::Alice.pair());
-    let signer = PairSigner::<chaosrpc::DefaultConfig, _>::new(AccountKeyring::Alice.pair());
-
-    // runtime API
-    let api = ClientBuilder::new()
-        .build()
-        .await?
-        .to_runtime_api::<chaosrpc::RuntimeApi<chaosrpc::DefaultConfig>>();
-
-    // submit extrinsic
-    let result = api
-        .tx()
-        .chaos()
-        .unwrap_add()
-        .sign_and_submit_then_watch(&signer)
-        .await?;
-
-    // check event
-    if result
-        .find_event::<chaosrpc::chaos::events::Added>()?
-        .is_none()
-    {
-        panic!("Event not found!");
-    }
-
-    Ok(())
-}
-
 pub async fn rpc_overflow_adder(n: u32) -> Result<u32, Box<dyn std::error::Error>> {
     // alice signer
     // let signer = PairSigner::new(AccountKeyring::Alice.pair());
