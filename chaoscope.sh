@@ -101,6 +101,42 @@ build_chaoscope()
   cargo build --release
 }
 
+run_overflow_adder()
+{
+  echo ""
+  echo "First, let's try adding to the storage adder a few times."
+  echo "Adding 1..."
+  ./target/release/chaoscope overflow-adder -n 1
+  echo "Adding 10..."
+  ./target/release/chaoscope overflow-adder -n 10
+  echo "Adding 100..."
+  ./target/release/chaoscope overflow-adder -n 100
+
+  echo "Now, let's add a very large number and force the u32 overflow..."
+  echo "Adding 4294967295... we'd expect an overflow error here."
+  ./target/release/chaoscope overflow-adder -n 4294967295
+
+  echo "See? Remember to use checked_add"
+}
+
+run_drag_block_unit_weight()
+{
+  echo ""
+  echo "Let's drag block production by calculating hashes on a loop with unitary extrinsic weight..."
+  echo "Looping 10000000 times..."
+  ./target/release/chaoscope drag-block-unit-weight -n 10000000
+  echo "Looping 50000000 times..."
+  ./target/release/chaoscope drag-block-unit-weight -n 50000000
+  echo "Looping 100000000 times..."
+  ./target/release/chaoscope drag-block-unit-weight -n 100000000
+  echo "Looping 500000000 times..."
+  ./target/release/chaoscope drag-block-unit-weight -n 500000000
+  echo "Looping 1000000000 times..."
+  ./target/release/chaoscope drag-block-unit-weight -n 1000000000
+  echo "Looping 5000000000 times... we don't really expect the chain to produce any blocks anymore..."
+  ./target/release/chaoscope drag-block-unit-weight -n 5000000000
+}
+
 run_chaoscope()
 {
   get_metadata
@@ -110,15 +146,10 @@ run_chaoscope()
   build_chaoscope
 
   echo ""
-  echo "Let's run chaoscope..."
+  echo "Finally, let's run chaoscope..."
 
-  echo "Let's drag block production with unit weight..."
-  ./target/release/chaoscope drag-block-unit-weight -n 10000000
-  ./target/release/chaoscope drag-block-unit-weight -n 50000000
-  ./target/release/chaoscope drag-block-unit-weight -n 100000000
-  ./target/release/chaoscope drag-block-unit-weight -n 500000000
-  ./target/release/chaoscope drag-block-unit-weight -n 1000000000
-  ./target/release/chaoscope drag-block-unit-weight -n 5000000000
+  run_overflow_adder
+  run_drag_block_unit_weight
 }
 
 echo ""
