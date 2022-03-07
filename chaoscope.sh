@@ -18,7 +18,7 @@ add_pallet_chaos()
 
   pushd substrate-node-chaos > /dev/null
   pushd pallets > /dev/null
-  git clone ssh://git@github.com/paritytech/pallet-chaos.git
+  git clone https://github.com/paritytech/pallet-chaos
   popd > /dev/null
 
   git apply ../diff/add_chaos_runtime.diff
