@@ -137,8 +137,21 @@ run_drag_block_unit_weight()
   ./target/release/chaoscope drag-block-unit-weight -n 5000000000
 }
 
+dependency_check()
+{
+  type git >/dev/null || { echo >&2 "git is missing. please install it." ; exit 1;}
+  type curl >/dev/null || { echo >&2 "curl is missing. please install it." ; exit 1;}
+  type pushd >/dev/null || { echo >&2 "pushd is missing. please install it." ; exit 1;}
+  type popd >/dev/null || { echo >&2 "popd is missing. please install it." ; exit 1;}
+  type cargo >/dev/null || { echo >&2 "cargo is missing. please install it." ; exit 1;}
+  type jq >/dev/null || { echo >&2 "jq is missing. please install it." ; exit 1;}
+  type screen >/dev/null || { echo >&2 "screen is missing. please install it." ; exit 1;}
+  type sudo >/dev/null || { echo >&2 "sudo is missing. please install it." ; exit 1;}
+}
+
 run_chaoscope()
 {
+  dependency_check
   get_metadata
 
   echo ""
